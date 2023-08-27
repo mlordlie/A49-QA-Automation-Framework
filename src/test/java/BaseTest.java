@@ -69,8 +69,9 @@ public class BaseTest {
         Thread.sleep(2000);
     }
 
+
     public void clickFirstSong() throws InterruptedException {
-        WebElement firstSong = driver.findElement(By.xpath("//td[@class='title'][1]"));
+        WebElement firstSong = driver.findElement(By.cssSelector("#songResultsWrapper td:nth-child(2)"));
         firstSong.click();
         Thread.sleep(2000);
     }
@@ -82,13 +83,13 @@ public class BaseTest {
     }
 
     public void selectMyPlaylist() throws InterruptedException {
-        WebElement myPlaylist = driver.findElement(By.xpath("//li[@class='playlist']"));
+        WebElement myPlaylist = driver.findElement(By.cssSelector("#songResultsWrapper li:nth-child(5)"));
         myPlaylist.click();
         Thread.sleep(2000);
     }
 
     public void verifyAddedSongMessage() throws InterruptedException {
-        WebElement addedSongMessage = driver.findElement(By.xpath("//div[@class='alertify-logs top right']"));
+        WebElement addedSongMessage = driver.findElement(By.cssSelector("#alertifyCSS "));
         addedSongMessage.getText();
     }
 }
