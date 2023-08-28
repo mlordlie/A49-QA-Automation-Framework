@@ -57,39 +57,4 @@ public class BaseTest {
         submit.click();
     }
 
-    public void searchSong(String name) throws InterruptedException {
-        WebElement searchField = driver.findElement(By.cssSelector("[type='search']"));
-        searchField.sendKeys(name);
-        Thread.sleep(2000);
-    }
-
-    public void clickViewAll() throws InterruptedException {
-        WebElement viewAllButton = driver.findElement(By.xpath("//button[@data-test='view-all-songs-btn']"));
-        viewAllButton.click();
-        Thread.sleep(2000);
-    }
-
-
-    public void clickFirstSong() throws InterruptedException {
-        WebElement firstSong = driver.findElement(By.cssSelector("#songResultsWrapper td:nth-child(2)"));
-        firstSong.click();
-        Thread.sleep(2000);
-    }
-
-    public void clickAddTo() throws InterruptedException {
-        WebElement addToButton = driver.findElement(By.xpath("//button[@class='btn-add-to']"));
-        addToButton.click();
-        Thread.sleep(2000);
-    }
-
-    public void selectMyPlaylist() throws InterruptedException {
-        WebElement myPlaylist = driver.findElement(By.cssSelector("#songResultsWrapper li:nth-child(5)"));
-        myPlaylist.click();
-        Thread.sleep(2000);
-    }
-
-    public void verifyAddedSongMessage() throws InterruptedException {
-        WebElement addedSongMessage = driver.findElement(By.cssSelector("#alertifyCSS "));
-        addedSongMessage.getText();
-    }
 }
