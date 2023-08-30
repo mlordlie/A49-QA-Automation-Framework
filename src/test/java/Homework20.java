@@ -3,11 +3,10 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-
-public class Homework19 extends BaseTest {
+public class Homework20 extends BaseTest {
     String expectedDeletedPlaylistMsg = "Deleted playlist \"My Playlist.\"";
     @Test
-    public void deletePlaylist() throws InterruptedException {
+    public void deletePlaylist() {
         provideEmail("merry.lordlie@testpro.io");
         providePassword("te$t$tudent");
         clickSubmit();
@@ -22,10 +21,9 @@ public class Homework19 extends BaseTest {
         okBtn.click();
     }
 
-    public void clickPlaylist() throws InterruptedException{
+    public void clickPlaylist() {
         WebElement myPlaylist = driver.findElement(By.cssSelector("#playlists li:nth-child(3)"));
         myPlaylist.click();
-        Thread.sleep(2000);
     }
 
     public void clickDeleteBtnPlaylist() {
@@ -38,3 +36,4 @@ public class Homework19 extends BaseTest {
         return notificationAlert.getText();
     }
 }
+
