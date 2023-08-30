@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Homework17 extends BaseTest{
+    String expectedAddedSongMsg = "Added 1 song into \"Homework17.\"";
     @Test
     public void addSongToPlaylist() throws InterruptedException {
         navigateToPage();
@@ -16,7 +17,12 @@ public class Homework17 extends BaseTest{
         clickFirstSong();
         clickAddTo();
         selectMyPlaylist();
-        verifyAddedSongMessage();
+        verifyAddedSongMsg();
+        Assert.assertEquals(verifyAddedSongMsg(), expectedAddedSongMsg);
+    }
 
+    public String verifyAddedSongMsg() {
+        WebElement addedSongMessage = driver.findElement(By.cssSelector("div.success.show"));
+        return addedSongMessage.getText();
     }
 }

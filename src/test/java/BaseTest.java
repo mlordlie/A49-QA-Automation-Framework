@@ -87,9 +87,4 @@ public class BaseTest {
         myPlaylist.click();
         Thread.sleep(2000);
     }
-
-    public void verifyAddedSongMessage() throws InterruptedException {
-        WebElement addedSongMessage = driver.findElement(By.cssSelector("#alertifyCSS "));
-        addedSongMessage.getText();
-    }
 }
