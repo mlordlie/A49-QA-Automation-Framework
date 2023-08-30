@@ -7,26 +7,28 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import java.time.Duration;
 
 public class BaseTest {
     public WebDriver driver;
-    public String url = "https://qa.koel.app/";
-
+    public String url;
     @BeforeSuite
-    static void setupClass() {
-        WebDriverManager.chromedriver().setup();
-    }
-
+    static void setupClass() {WebDriverManager.chromedriver().setup();}
     @BeforeMethod
-    public void launchBrowser() {
+    @Parameters({"BaseURL"})
+    public void launchBrowser(String BaseURL) {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-notifications");
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
+        url = BaseURL;
+        driver.get(url);
+//        navigateToPage();
     }
 
     @AfterMethod
@@ -34,9 +36,9 @@ public class BaseTest {
         driver.quit();
     }
 
-    public void navigateToPage() {
-        driver.get(url);
-    }
+//    public void navigateToPage() {
+//        driver.get(url);
+//    }
 
     public void provideEmail(String email) {
         WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
@@ -55,41 +57,5 @@ public class BaseTest {
     public void clickSubmit() {
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submit.click();
-    }
-
-    public void searchSong(String name) throws InterruptedException {
-        WebElement searchField = driver.findElement(By.cssSelector("[type='search']"));
-        searchField.sendKeys(name);
-        Thread.sleep(2000);
-    }
-
-    public void clickViewAll() throws InterruptedException {
-        WebElement viewAllButton = driver.findElement(By.xpath("//button[@data-test='view-all-songs-btn']"));
-        viewAllButton.click();
-        Thread.sleep(2000);
-    }
-
-
-    public void clickFirstSong() throws InterruptedException {
-        WebElement firstSong = driver.findElement(By.cssSelector("#songResultsWrapper td:nth-child(2)"));
-        firstSong.click();
-        Thread.sleep(2000);
-    }
-
-    public void clickAddTo() throws InterruptedException {
-        WebElement addToButton = driver.findElement(By.xpath("//button[@class='btn-add-to']"));
-        addToButton.click();
-        Thread.sleep(2000);
-    }
-
-    public void selectMyPlaylist() throws InterruptedException {
-        WebElement myPlaylist = driver.findElement(By.cssSelector("#songResultsWrapper li:nth-child(5)"));
-        myPlaylist.click();
-        Thread.sleep(2000);
-    }
-
-    public void verifyAddedSongMessage() throws InterruptedException {
-        WebElement addedSongMessage = driver.findElement(By.cssSelector("#alertifyCSS "));
-        addedSongMessage.getText();
     }
 }

@@ -11,7 +11,7 @@ import java.time.Duration;
 public class LoginTests extends BaseTest {
     @Test
     public void loginEmptyEmailPassword() {
-        navigateToPage();
+//        navigateToPage();
         provideEmail("merry.lordlie@testpro.io");
         providePassword("te$t$tudent");
         clickSubmit();
