@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
@@ -16,6 +17,7 @@ import java.time.Duration;
 public class BaseTest {
     public WebDriver driver;
     public String url;
+    public Actions actions;
 
     public WebDriverWait wait;
     @BeforeSuite
@@ -30,7 +32,7 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
-
+        actions = new Actions(driver);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         url = BaseURL;
         driver.get(url);
@@ -43,14 +45,14 @@ public class BaseTest {
 
     public void provideEmail(String email) {
         WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='email']")));
-        emailField.click();
+        actions.click(emailField).perform();
         emailField.clear();
         emailField.sendKeys(email);
     }
 
     public void providePassword(String password) {
         WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='password']")));
-        passwordField.click();
+        actions.click(passwordField).perform();
         passwordField.clear();
         passwordField.sendKeys(password);
     }
