@@ -9,9 +9,9 @@ public class HomePage extends BasePage{
         super(driver);
     }
 
-    By playlistField = By.cssSelector("#playlists li:nth-child(3)");
-    By newPlaylist = By.cssSelector("[name='name']");
-    By notification = By.cssSelector("div.success.show");
+    private final By playlistField = By.cssSelector("#playlists li:nth-child(3)");
+    private final By newPlaylist = By.cssSelector("[name='name']");
+    private final By notification = By.cssSelector("div.success.show");
 
     public void doubleCLickPlaylist() {
         doubleCLickPlaylist(playlistField);
