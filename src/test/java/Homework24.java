@@ -1,9 +1,10 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Homework23 extends BaseTest{
+public class Homework24 extends BaseTest {
     String expectedRenamePlaylistMsg = "Updated playlist \"My New Playlist.\"";
     String playlist = "My New Playlist";
+
     @Test
     public void renamePlaylist() {
         LoginPage loginPage = new LoginPage(driver);

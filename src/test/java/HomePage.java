@@ -12,7 +12,7 @@ public class HomePage extends BasePage{
 
     @FindBy(css ="#playlists li:nth-child(3)")
     WebElement playlistField;
-    @FindBy(css = "input[name='name']")
+    @FindBy(css = "a.active")
     WebElement newPlaylist;
     @FindBy(css = "div.success.show")
     WebElement notification;
@@ -23,7 +23,7 @@ public class HomePage extends BasePage{
     public void enterNewPlaylist(String playlist) {
         newPlaylist.sendKeys(Keys.chord(Keys.COMMAND,"A", Keys.DELETE));
         newPlaylist.sendKeys(playlist);
-        newPlaylist.sendKeys(Keys.ENTER);
+        newPlaylist.sendKeys(Keys.RETURN);
     }
     public String renamePlaylistMsg() {
         return notification.getText();
